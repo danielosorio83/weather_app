@@ -1,4 +1,5 @@
 require 'open_weather'
+require 'faker'
 
 class Weather
   APPID = Rails.application.secrets.open_weather_app_id
@@ -6,8 +7,13 @@ class Weather
   DEFAULT_OPTIONS = { APPID: APPID, units: 'imperial' }
 
   class << self
-    def search(city)
-      response = by_city(city)
+    def search(city, random = nil)
+      response =
+        if random.blank?
+          by_city(city)
+        else
+          by_random_city
+        end
       parse_response(response)
     end
 
@@ -17,6 +23,11 @@ class Weather
       OpenWeather::Current.city(city, DEFAULT_OPTIONS)
     rescue
       { 'message' => 'Nothing was found! Please try again with a valid city and country.' }
+    end
+
+    def by_random_city
+      city = Faker::Address.city
+      by_city(city)
     end
 
     def parse_response(response)

@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap', '~> 4.0.0.beta'
 gem 'jquery-rails', '4.3.1'
 gem 'open-weather', '0.12.0'
+gem 'faker', '1.8.4'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

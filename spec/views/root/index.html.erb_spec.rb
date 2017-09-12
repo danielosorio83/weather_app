@@ -20,4 +20,9 @@ RSpec.describe "root/index.html.erb", type: :view do
     render template: "root/index.html.erb"
     expect(rendered).to match /get-weather/
   end
+
+  it 'display a button for the `random-city`' do
+    render template: "root/index.html.erb"
+    expect(rendered).to match /random-city/
+  end
 end

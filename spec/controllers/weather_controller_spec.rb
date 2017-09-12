@@ -17,8 +17,8 @@ RSpec.describe WeatherController, type: :controller do
       end
 
       it 'assigns @weather' do
-        get :index, xhr: true, params: { address: '' }
-        assert_equal Weather.search(''), assigns(:weather)
+        get :index, xhr: true, params: { address: '', random: '' }
+        assert_equal Weather.search('', ''), assigns(:weather)
       end
     end
   end

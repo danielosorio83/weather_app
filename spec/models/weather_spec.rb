@@ -6,14 +6,25 @@ RSpec.describe Weather, type: :model do
     describe '.search' do
       let(:address) { '' }
 
-      it 'calls `by_city` with `address`' do
-        expect(Weather).to receive(:by_city).with(address).and_call_original
-        Weather.search(address)
+      context 'when `random` is empty' do
+        let(:random) { '' }
+        it 'calls `by_city` with `address`' do
+          expect(Weather).to receive(:by_city).with(address).and_call_original
+          Weather.search(address, random)
+        end
+      end
+
+      context 'when `random` NOT is empty' do
+        let(:random) { 'true' }
+        it 'calls `by_random_city`' do
+          expect(Weather).to receive(:by_random_city).and_call_original
+          Weather.search(address, random)
+        end
       end
 
       it 'calls `parse_response`' do
         expect(Weather).to receive(:parse_response).with(kind_of(Hash))
-        Weather.search('')
+        Weather.search('', '')
       end
 
       it 'returns a valid hash' do
@@ -57,6 +68,18 @@ RSpec.describe Weather, type: :model do
           expect(weather).to be_a(Hash)
           expect(weather).to have_key('message')
         end
+      end
+    end
+
+    describe '.by_random_city' do
+      it 'calls `by_city`' do
+        expect(Weather).to receive(:by_city).with(kind_of(String))
+        Weather.send(:by_random_city)
+      end
+
+      it 'calls `Faker::Address.city`' do
+        expect(Faker::Address).to receive(:city).and_call_original
+        Weather.send(:by_random_city)
       end
     end
 
