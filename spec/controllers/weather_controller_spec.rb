@@ -15,6 +15,11 @@ RSpec.describe WeatherController, type: :controller do
         get :index, xhr: true
         expect(response).to have_http_status(:success)
       end
+
+      it 'assigns @weather' do
+        get :index, xhr: true, params: { address: '' }
+        assert_equal Weather.search(''), assigns(:weather)
+      end
     end
   end
 end
