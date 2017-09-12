@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* I would improve the layout.
+* Maybe adding a map or better capture of the name of the city from openweather.
+* Also I would implement a way to choose from the units (ºF/ºC).
+* Implement 1h cache for cities
+* Add a map to select the city in the world
