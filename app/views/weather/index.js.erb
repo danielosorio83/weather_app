@@ -1,0 +1,6 @@
+var weather = $("#weather");
+var alert = weather.parent('.alert');
+alert.removeClass("alert-success");
+alert.removeClass("alert-danger");
+alert.addClass("alert-<%= @weather[:alert] %>");
+$("#weather").html("<%= @weather[:message].html_safe %>");
